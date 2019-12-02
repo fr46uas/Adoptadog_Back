@@ -41,6 +41,7 @@ const getByRaza = (pPerroRaza) => {
         db.query('select distinct (raza) from perros', [pPerroRaza], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
+
         });
     });
 };
