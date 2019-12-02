@@ -38,7 +38,7 @@ const getByPerreras = (pPerreraId) => {
 const getByRaza = (pPerroRaza) => {
 
     return new Promise((resolve, reject) => {
-        db.query('select * from perros where raza=?', [pPerroRaza], (err, rows) => {
+        db.query('select distinct (raza) from perros', [pPerroRaza], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
