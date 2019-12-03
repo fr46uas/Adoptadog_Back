@@ -9,6 +9,13 @@ router.get('/', async (req, res) => {
     res.json(rows);
 });
 
+//POST http://localhost:3000/api/perros/buscar
+router.post('/buscar', async (req, res) => {
+    const results = await Perro.getSearch(req.body)
+    res.json(results)
+    console.log(results)
+});
+
 //GET http://localhost:3000/api/perros/raza
 router.get('/raza', async (req, res) => {
     const rows = await Perro.getByRaza();

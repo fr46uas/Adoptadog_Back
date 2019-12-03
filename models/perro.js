@@ -10,6 +10,48 @@ const getAll = () => {
     });
 };
 
+const getSearch = (values) => {
+
+    let query = "select * from perros where 1=1";
+    let qValues = [];
+
+
+
+    if (values.raza) {
+        query += " and raza = ?";
+        qValues.push(values.raza);
+    };
+    if (values.color) {
+        query += " and color=?";
+        qValues.push(values.color)
+    };
+    if (values.tamano) {
+        query += " and tamano=?";
+        qValues.push(values.tamano);
+    };
+    if (values.sexo) {
+        query += " and sexo=?";
+        qValues.push(values.sexo)
+    };
+    if (values.perrera) {
+        query += " and fk_perrera=?";
+        qValues.push(values.perrera);
+    };
+
+    return new Promise((resolve, reject) => {
+        db.query(query, qValues, (err, rows) => {
+            console.log(rows)
+
+            if (err) reject(err);
+            resolve(rows)
+        })
+
+        console.log(query);
+        console.log(qValues);
+    });
+
+};
+
 const getById = (pPerroId) => {
 
     return new Promise((resolve, reject) => {
@@ -87,6 +129,7 @@ module.exports = {
     getByRaza: getByRaza,
     getByColor: getByColor,
     getBySize: getBySize,
-    getBySexo: getBySexo
+    getBySexo: getBySexo,
+    getSearch: getSearch
 
 }
