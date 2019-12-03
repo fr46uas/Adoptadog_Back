@@ -9,6 +9,29 @@ router.get('/', async (req, res) => {
     res.json(rows);
 });
 
+//GET http://localhost:3000/api/perros/raza
+router.get('/raza', async (req, res) => {
+    const rows = await Perro.getByRaza();
+    res.json(rows);
+});
+
+//GET http://localhost:3000/api/perros/color
+router.get('/color', async (req, res) => {
+    const rows = await Perro.getByColor();
+    res.json(rows);
+});
+
+//GET http://localhost:3000/api/perros/tamano
+router.get('/tamano', async (req, res) => {
+    const rows = await Perro.getBySize();
+    res.json(rows);
+});
+
+//GET http://localhost:3000/api/perros/sexo
+router.get('/sexo', async (req, res) => {
+    const rows = await Perro.getBySexo();
+    res.json(rows);
+});
 
 
 module.exports = router;

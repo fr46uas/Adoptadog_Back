@@ -50,7 +50,7 @@ const getByRaza = (pPerroRaza) => {
 const getByColor = (pPerroColor) => {
 
     return new Promise((resolve, reject) => {
-        db.query('select * from perros where color=?', [pPerroColor], (err, rows) => {
+        db.query('select distinct (color) from perros', [pPerroColor], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
@@ -61,7 +61,7 @@ const getByColor = (pPerroColor) => {
 const getBySize = (pPerroTamano) => {
 
     return new Promise((resolve, reject) => {
-        db.query('select * from perros where tamaño=?', [pPerroTamano], (err, rows) => {
+        db.query('select distinct (tamano) from perros', [pPerroTamano], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
@@ -71,7 +71,7 @@ const getBySize = (pPerroTamano) => {
 const getBySexo = (pPerroSexo) => {
 
     return new Promise((resolve, reject) => {
-        db.query('select * from perros where sexo=?', [pPerroSexo], (err, rows) => {
+        db.query('select distinct (sexo) from perros', [pPerroSexo], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
