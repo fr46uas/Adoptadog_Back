@@ -40,14 +40,14 @@ const getSearch = (values) => {
 
     return new Promise((resolve, reject) => {
         db.query(query, qValues, (err, rows) => {
-            console.log(rows)
+            //console.log(rows)
 
             if (err) reject(err);
             resolve(rows)
         })
 
-        console.log(query);
-        console.log(qValues);
+        //console.log(query);
+        //console.log(qValues);
     });
 
 };
