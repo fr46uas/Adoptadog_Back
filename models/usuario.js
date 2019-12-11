@@ -22,8 +22,8 @@ const getById = (pUsuarioId) => {
 }
 
 const getByEmail = (pEmail) => {
-    return new Promisa((resolve, reject) => {
-        db.query('select * from usuarios whare email = ?', [pEmail], (err, rows) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from usuarios where email = ?', [pEmail], (err, rows) => {
             if (err) reject(err)
             resolve(rows)
         });
