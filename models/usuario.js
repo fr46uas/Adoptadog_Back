@@ -21,7 +21,17 @@ const getById = (pUsuarioId) => {
     });
 }
 
+const getByEmail = (pEmail) => {
+    return new Promisa((resolve, reject) => {
+        db.query('select * from usuarios whare email = ?', [pEmail], (err, rows) => {
+            if (err) reject(err)
+            resolve(rows)
+        });
+    })
+}
+
 module.exports = {
     insert: insert,
-    getById: getById
+    getById: getById,
+    getByEmail: getByEmail
 }

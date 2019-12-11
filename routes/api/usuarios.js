@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const bcrypt = require('bcryptjs');
+const moment = require('moment');
+const jwt = require('jwt-simple');
 
 const Usuario = require('../../models/usuario');
 
