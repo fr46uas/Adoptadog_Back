@@ -6,6 +6,10 @@ const jwt = require('jwt-simple');
 
 const Usuario = require('../../models/usuario');
 
+const middlewares = require('../middlewares');
+
+
+
 
 router.post('/', async (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
@@ -19,6 +23,37 @@ router.post('/', async (req, res) => {
     //     res.json({ error: 'Error en la insercion del Usuario' })
     // };
 });
+
+router.post('/login', (req, res) => {
+
+    Usuario.getByEmail(req.body.email)
+        .then(rows => {
+            if (rows.length !== 1) {
+                res.json({ error: 'Error email y/o password' });
+            } else {
+                const iguales = bcrypt.compareSync(req.body.password, rows[0].password);
+                if (!iguales) {
+                    res.json({ error: 'Error email y/o password' });
+                } else {
+                    res.json({ exito: createToken(rows[0]) });
+                }
+            }
+        }).catch(err => {
+            res.json({ error: err.message });
+        });
+
+});
+
+//METODO PARA CREAR UN TOKEN
+
+const createToken = (user) => {
+    let payload = {
+        userId: user.id,
+        createdAt: moment().unix(),
+        expiresAt: moment().add(5, 'minutes').unix()
+    }
+    return jwt.encode(payload, process.env.TOKEN_KEY);
+}
 
 
 module.exports = router;
