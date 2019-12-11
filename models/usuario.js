@@ -1,6 +1,6 @@
-const insert = ({ nombre, apellidos, email, password, repeat_password, direccion, codigo_postal, localidad, provincia, telefono }) => {
+const insert = ({ nombre, apellidos, email, password, direccion, codigo_postal, localidad, provincia, telefono }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into usuarios (nombre, apellidos, email, password, repeat_password, direccion, codigo_postal, localidad, provincia, telefono) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, email, password, repeat_password, direccion, codigo_postal, localidad, provincia, telefono], (err, result) => {
+        db.query('insert into usuarios (nombre, apellidos, email, password, direccion, codigo_postal, localidad, provincia, telefono) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, email, password, direccion, codigo_postal, localidad, provincia, telefono], (err, result) => {
             if (err) reject(err)
             resolve(result);
         });

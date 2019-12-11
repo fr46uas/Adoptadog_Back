@@ -12,6 +12,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
 
+require('dotenv').config();
+
 var app = express();
 
 require('./db');
