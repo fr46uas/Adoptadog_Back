@@ -6,7 +6,7 @@ const jwt = require('jwt-simple');
 
 const Usuario = require('../../models/usuario');
 
-const middlewares = require('../middlewares');
+// const middlewares = require('../middlewares');
 
 
 
