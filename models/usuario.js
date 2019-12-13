@@ -7,6 +7,15 @@ const insert = ({ nombre, apellidos, email, password, direccion, codigo_postal, 
     });
 };
 
+const insertPost = ({ usuario, titulo, mensaje, fecha }) => {
+    return new Promise((resolve, reject) => {
+        db.query('insert into post (usuario, titulo, mensaje, fecha) values (?, ? , ?, ?)', [usuario, titulo, mensaje, fecha], (err, result) => {
+            if (err) reject(err)
+            resolve(result);
+        })
+    })
+}
+
 const getById = (pUsuarioId) => {
     return new Promise((resolve, reject) => {
 
@@ -33,5 +42,6 @@ const getByEmail = (pEmail) => {
 module.exports = {
     insert: insert,
     getById: getById,
-    getByEmail: getByEmail
+    getByEmail: getByEmail,
+    insertPost: insertPost
 }

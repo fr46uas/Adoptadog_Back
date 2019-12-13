@@ -24,6 +24,12 @@ router.post('/', async (req, res) => {
     // };
 });
 
+router.post('/post', async (req, res) => {
+    const result = await Usuario.insertPost(req.body);
+    res.json(result)
+    console.log(result);
+})
+
 router.post('/login', (req, res) => {
 
     Usuario.getByEmail(req.body.email)
@@ -46,6 +52,8 @@ router.post('/login', (req, res) => {
         });
 
 });
+
+
 
 //METODO PARA CREAR UN TOKEN
 
