@@ -17,6 +17,7 @@ const getSearch = (values) => {
 
 
 
+
     if (values.raza) {
         query += " and raza = ?";
         qValues.push(values.raza);
@@ -32,6 +33,7 @@ const getSearch = (values) => {
     if (values.sexo) {
         query += " and sexo=?";
         qValues.push(values.sexo)
+
     };
     if (values.perrera) {
         query += " and fk_perrera=?";
@@ -40,7 +42,7 @@ const getSearch = (values) => {
 
     return new Promise((resolve, reject) => {
         db.query(query, qValues, (err, rows) => {
-            //console.log(rows)
+
 
             if (err) reject(err);
             resolve(rows)
