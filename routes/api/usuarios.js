@@ -35,7 +35,9 @@ router.post('/login', (req, res) => {
                 if (!iguales) {
                     res.json({ error: 'Error email y/o password' });
                 } else {
-                    res.json({ exito: createToken(rows[0]) });
+                    res.json({ exito: createToken(rows[0]), nombre: rows[0].nombre });
+                    console.log(rows[0])
+
 
                 }
             }
