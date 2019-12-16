@@ -1,8 +1,22 @@
+const moment = require('moment');
+
 const insert = ({ nombre, apellidos, email, password, direccion, codigo_postal, localidad, provincia, telefono }) => {
     return new Promise((resolve, reject) => {
         db.query('insert into usuarios (nombre, apellidos, email, password, direccion, codigo_postal, localidad, provincia, telefono) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, email, password, direccion, codigo_postal, localidad, provincia, telefono], (err, result) => {
             if (err) reject(err)
             resolve(result);
+        });
+    });
+};
+
+const getAllPost = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from post', (err, rows) => {
+            if (err) reject(err);
+            for (let row of rows) {
+                row.fecha = moment(row.fecha.format('DD-MM-YYYY'));
+            }
+            resolve(rows);
         });
     });
 };
@@ -43,5 +57,6 @@ module.exports = {
     insert: insert,
     getById: getById,
     getByEmail: getByEmail,
-    insertPost: insertPost
+    insertPost: insertPost,
+    getAllPost: getAllPost
 }

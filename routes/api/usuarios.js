@@ -30,6 +30,10 @@ router.post('/post', async (req, res) => {
     console.log(result);
 })
 
+router.post('/post', async (req, res) => {
+    const result = await Usuario.getAllPost(req.body);
+    res.json(result)
+})
 router.post('/login', (req, res) => {
 
     Usuario.getByEmail(req.body.email)
