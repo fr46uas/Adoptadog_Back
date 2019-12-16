@@ -26,14 +26,17 @@ router.post('/', async (req, res) => {
 
 router.post('/post', async (req, res) => {
     const result = await Usuario.insertPost(req.body);
-    res.json(result)
+    const posts = await Usuario.getAllPost();
+    res.json(posts)
     console.log(result);
 })
 
-router.post('/post', async (req, res) => {
-    const result = await Usuario.getAllPost(req.body);
+router.get('/post', async (req, res) => {
+    const result = await Usuario.getAllPost();
     res.json(result)
 })
+
+
 router.post('/login', (req, res) => {
 
     Usuario.getByEmail(req.body.email)

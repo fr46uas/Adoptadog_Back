@@ -11,11 +11,11 @@ const insert = ({ nombre, apellidos, email, password, direccion, codigo_postal, 
 
 const getAllPost = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from post', (err, rows) => {
+        db.query('select * from post order by fecha asc', (err, rows) => {
             if (err) reject(err);
-            for (let row of rows) {
-                row.fecha = moment(row.fecha.format('DD-MM-YYYY'));
-            }
+            /*  for (let row of rows) {
+                 row.fecha = moment(row.fecha.format('DD-MM-YYYY'));
+             } */
             resolve(rows);
         });
     });
