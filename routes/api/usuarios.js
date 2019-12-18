@@ -28,7 +28,7 @@ router.post('/post', async (req, res) => {
     const result = await Usuario.insertPost(req.body);
     const posts = await Usuario.getAllPost();
     res.json(posts)
-    console.log(result);
+
 })
 
 router.get('/post', async (req, res) => {
@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
                     res.json({ error: 'Error email y/o password' });
                 } else {
                     res.json({ exito: createToken(rows[0]), nombre: rows[0].nombre, apellidos: rows[0].apellidos });
-                    console.log(rows[0].apellidos)
+
 
 
                 }

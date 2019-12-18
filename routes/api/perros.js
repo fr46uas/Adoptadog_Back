@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 router.post('/buscar', async (req, res) => {
     const results = await Perro.getSearch(req.body)
     res.json(results)
-    console.log(results)
+
 });
 
 //GET http://localhost:3000/api/perros/raza
